@@ -130,7 +130,7 @@ contamination <-
 # normal flags from MSI_SC_Genotyping.R
 tumour_copy_dt[, normal_flag := wes_sc_read_counts$normal_flag[match(cid, wes_sc_read_counts$cid)]]
 
-all_tcd_rle <- c()
+# all_tcd_rle <- c()
 
 # loop over patient IDs
 for(pt in pts) {
