@@ -96,3 +96,17 @@ wes_sc_read_counts[, normal_flag := (TOTAL > 10 & ALT < 5 & pval < 0.05)]
 # cells with < 10 total reads at mutant loci are indeterminate (likely due to insufficient tumor purity)
 wes_sc_read_counts[TOTAL < 10, normal_flag := NA]
 
+# QC plot
+ggplot(wes_sc_read_counts, aes(x = REF, y = ALT, color = normal_flag)) + 
+  geom_point(size = 3, alpha = 0.25) + 
+  scale_color_manual("", values = c("TRUE" = brewer.pal(n = 9, "Greens")[7],
+                                    "FALSE" = "dimgrey",
+                                    "NA" = "black")) +
+  geom_abline(linetype = 'dashed', color = 'black') + 
+  facet_wrap( ~ Sample, nrow = 2) + 
+  xlab("Wildtype reads") +
+  ylab("Mutant reads") +
+  coord_equal() + 
+  theme_classic() +
+  scale_x_continuous(limits = c(0, 200)) +
+  scale_y_continuous(limits = c(0, 200))
