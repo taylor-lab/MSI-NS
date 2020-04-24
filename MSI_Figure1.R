@@ -22,6 +22,7 @@ rm(tmp)
 
 # Fig 1a
 
+# MSI score
 tmp.dat = msi.master[, .(
   min = min(MSI_SCORE, na.rm = T),
   q1 = quantile(MSI_SCORE, probs = 0.25, na.rm = T),
@@ -72,6 +73,7 @@ p1 = ggplot(tmp.dat, aes(factor(MSI, levels = c("MSS", "UNK", "MSI")))) +
     legend.position = "bottom"
   )
 
+# Mutation rate
 tmp.dat = msi.master[MSI != "UNK", .(
   min = log10(min(dmp_tmb + 0.01, na.rm = T)),
   q1 = log10(quantile(dmp_tmb + 0.01, probs = 0.25, na.rm = T)),
@@ -122,6 +124,7 @@ p2 = ggplot(tmp.dat, aes(factor(MSI, levels = c("MSS", "MSI")))) +
     legend.position = "none"
   )
 
+# Indel ratio
 tmp.dat = msi.master[MSI != "UNK" & n_ins + n_del + n_snv > 9, .(
   min = min(indel_pct, na.rm = T),
   q1 = quantile(indel_pct, probs = 0.25, na.rm = T),
@@ -171,6 +174,7 @@ p3 = ggplot(tmp.dat, aes(factor(MSI, levels = c("MSS", "MSI")))) +
     legend.position = "none"
   )
 
+# Fraction genome altered
 tmp.dat = msi.master[MSI != "UNK", .(
   min = min(FGA, na.rm = T),
   q1 = quantile(FGA, probs = 0.25, na.rm = T),
