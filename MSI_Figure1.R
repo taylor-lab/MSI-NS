@@ -269,7 +269,7 @@ ggplot(msi.master[MSI == "MSI"],
     legend.position = "none"
   )
 
-# Fig. 1c
+# Fig 1c
 
 fga_breakdown <-
   msi.master[MSI == "MSI", .N,
