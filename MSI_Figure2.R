@@ -35,7 +35,7 @@ msi_quantile_dat = msi.master[MSI != "UNK",
                                 purity.hi = quantile(Purity, probs = 0.75, na.rm = T),
                                 N = luq(Tumor_Sample_Barcode)
                               ),
-                              by = list(Cancer_Type, MSI_class %!like% 'Non-Lynch', MSI)][order(Cancer_Type)]
+                              by = list(Cancer_Type, MSI_class %!like% 'Other', MSI)][order(Cancer_Type)]
 
 ggplot(msi_quantile_dat[N > 10 & MSI == "MSI"], aes(x = msi,
                                                     y = 100 * hap)) +
@@ -68,7 +68,7 @@ ggplot(msi_quantile_dat[N > 10 & MSI == "MSI"], aes(x = msi,
     "",
     values = c("TRUE" = "#FDE330",
                "FALSE" = 'dimgrey'),
-    labels = c("LS-associated tumors",
+    labels = c("MSI-assoc cancers",
                "Other")
   ) +
   scale_radius(
