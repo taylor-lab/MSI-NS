@@ -274,7 +274,7 @@ ggplot(msi.master[MSI == "MSI"],
 fga_breakdown <-
   msi.master[MSI == "MSI", .N,
              by = list(FGA_bin, MSI_class)][order(MSI_class, FGA_bin)][, .(FGA_bin, N, pct = N / sum(N)),
-                                                                       by = MSI_class %!like% 'Non-Lynch']
+                                                                       by = MSI_class %!like% 'Other']
 fga_breakdown[, total := sum(N), by = MSI_class]
 fga_breakdown[, MSI_class := ifelse(MSI_class, "MSI-assoc", "Other")]
 
@@ -343,7 +343,7 @@ ggplot(fga_breakdown,
 # Fig 1f
 
 ggplot(msi.master[MSI != "UNK", .N,
-                  list(MSI_class %like% 'Non-', MSI, WGD)][, .(WGD,
+                  list(MSI_class %like% 'Other', MSI, WGD)][, .(WGD,
                                                                N,
                                                                label = paste(MSI_class, MSI),
                                                                pct = N / sum(N)), by = list(MSI_class, MSI)],
