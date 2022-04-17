@@ -187,7 +187,7 @@ for(pt in pts) {
                space = "free_x") +
     scale_color_manual("Copies",
                        values = state_cols,
-                       labels = c("0", "1", "2", "3", "4", "4+")) +
+                       labels = c("0", "1", "2", "3", "4+")) +
     theme_classic() +
     theme(
       panel.spacing = unit(0, "lines"),
